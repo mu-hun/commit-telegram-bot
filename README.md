@@ -19,3 +19,10 @@ Commmmmmm~~with me!~~it every day!
 
 ### \#3 run `python index.py`
 ![](screenshot.png)
+
+## License
+```
+The MIT License (MIT)
+
+Copyright (c) 2016 BetaFish
+```
