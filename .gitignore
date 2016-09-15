@@ -1,3 +1,2 @@
-telegram.ini
-github.ini
+*.ini
 .idea/

@@ -1,21 +1,14 @@
 #!/bin/sh
 
-# install apex to deploy to AWS Lambda
-apex=apex
-
-if ! apex_loc="$(type -p "$apex")" || [ -z "$apex" ]; then
-    echo "Installing apex ..."
-    curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
-else
-    echo "Apex is already installed."
-fi
-
-echo "\n"
-
-# slack configuration
-while [[ -z "$telegram_token" ]]
+# telegram configuration
+while [[ -z "$token" ]]
 do
-    read -p "Telegram bot TOKEN : " telegram_token
+    read -p "Please enter Telegram bot TOKEN : " token
+done
+
+while [[ -z "$tele_id" ]]
+do
+    read -p "NOTE : please check your id to https://telegram.me/userinfobot \n Please enter Telegram user id : " tele_id
 done
 
 # github configuration
@@ -29,15 +22,13 @@ do
     read -s -p "Github password : " password
 done
 
-touch config/github.ini
-touch config/telegram.ini
+touch config.ini
 
-cat << EOF > config/telegram.ini
+cat << EOF > config.ini
 [telegram]
-telegram_token: $telegram_token
-EOF
+token: $token
+tele_id: $tele_id
 
-cat << EOF > config/github.ini
 [github]
 username: $username
 password: $password
