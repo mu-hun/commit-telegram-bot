@@ -22,7 +22,7 @@ logging.basicConfig(level=logging.DEBUG,
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-# TODO: .ini parser code of ConfigPaser bug Fix
+# TODO: Fix the .ini parser code of ConfigPaser bug
 # config = ConfigParser()
 # config.read('config.ini')
 #
@@ -114,7 +114,7 @@ def handle(bot, job):
             bot.sendMessage(chat_id='tele_id', text=random.choice(message_list), parse_mode=ParseMode.HTML)
 
 
-job_minute = Job(handle, 10.0)
+job_minute = Job(handle, 3600.0) # 3600s(1h) execute
 
 j = updater.job_queue
 j.put(job_minute, next_t=0.0)
