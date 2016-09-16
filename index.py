@@ -110,8 +110,7 @@ def handle(bot, job):
         # NOTE : 'tele_id' is your telegram id please check your id to https://telegram.me/userinfobot
         if random.randint(0, 1) == 0:
             bot.sendSticker(chat_id='tele_id', sticker=random.choice(sticker_list))
-        else:
-            bot.sendMessage(chat_id='tele_id', text=random.choice(message_list), parse_mode=ParseMode.HTML)
+        bot.sendMessage(chat_id='tele_id', text=random.choice(message_list), parse_mode=ParseMode.HTML)
 
 
 job_minute = Job(handle, 3600.0) # 3600s(1h) execute
