@@ -1,7 +1,7 @@
 # DailyCommit
 Commmmmmm~~with me!~~it every day!
 
-**[@minggrammer](https://github.com/minggrammer)**님의 슬랙 봇인 [commit-alarm](https://github.com/geekhub-lab/commit-alarm)을 텔레그램으로 포팅한 챗봇입니다.
+**[@mingrammer](https://github.com/mingrammer)**님의 슬랙 봇인 [commit-alarm](https://github.com/geekhub-lab/commit-alarm)을 텔레그램으로 포팅한 챗봇입니다.
 
 ## How to run this chat bot?
 ### ~~run `install.sh`~~
