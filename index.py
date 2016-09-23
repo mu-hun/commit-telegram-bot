@@ -77,8 +77,8 @@ message_list = [
 ]
 
 sticker_list = [
-    u'http://gdurl.com/zy7Z',
-    u'http://gdurl.com/eRGt'
+    'reva.webp',
+    'cat.webp'
 ]
 
 
@@ -109,7 +109,7 @@ def handle(bot, job):
     if len(today_commit_events) == 0:
         # NOTE : 'tele_id' is your telegram id please check your id to https://telegram.me/userinfobot
         if random.randint(0, 1) == 0:
-            bot.sendSticker(chat_id='tele_id', sticker=random.choice(sticker_list))
+            bot.sendSticker(chat_id='tele_id', sticker=open(random.choice(sticker_list), 'rb'))
         bot.sendMessage(chat_id='tele_id', text=random.choice(message_list), parse_mode=ParseMode.HTML)
 
 
