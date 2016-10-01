@@ -16,8 +16,8 @@ from github import Github
 
 
 import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formats = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+logging.basicConfig(level=logging.DEBUG, format=formats)
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -100,20 +100,24 @@ def get_today_commit_events(user):
 
 
 def handle(bot, job):
-    username, password = 'your_username', 'your_pw'# username, password = get_github_account_info()
+    # username, password = get_github_account_info()
+    username, password = 'your_username', 'your_pw'
 
     client = Github(username, password)
 
     today_commit_events = get_today_commit_events(client.get_user(username))
 
     if len(today_commit_events) == 0:
-        # NOTE : 'tele_id' is your telegram id please check your id to https://telegram.me/userinfobot
+        # NOTE : 'tele_id' is user chat id or grop chat id
+        # please check your id to https://telegram.me/userinfobot
+        # tele_id = 123456
         if random.randint(0, 1) == 0:
             bot.sendSticker(chat_id='tele_id', sticker=open(random.choice(sticker_list), 'rb'))
         bot.sendMessage(chat_id='tele_id', text=random.choice(message_list), parse_mode=ParseMode.HTML)
 
 
-job_minute = Job(handle, 3600.0) # 3600s(1h) execute
+# 3600s(1h) execute
+job_minute = Job(handle, 3600.0)
 
 j = updater.job_queue
 j.put(job_minute, next_t=0.0)
