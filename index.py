@@ -1,5 +1,6 @@
 # coding: utf-8
 
+# HACK: configparser module bug
 # from configparser import ConfigParser
 
 import datetime
@@ -75,11 +76,13 @@ message_list = [
     u'<i>Make Commit log Great Again</i>',
     u'<b>1 Day 1 Commit</b> (찡긋)'
 ]
+random_message = random.choice(message_list)
 
 sticker_list = [
     'reva.webp',
     'cat.webp'
 ]
+random_sticker = random.choice(sticker_list)
 
 
 def get_today_commit_events(user):
@@ -109,19 +112,22 @@ def handle(bot, job):
 
     if len(today_commit_events) == 0:
         # NOTE : 'tele_id' is user chat id or grop chat id
-        # please check your id to https://telegram.me/userinfobot
+        # Please check your id to https://telegram.me/userinfobot
+
+        # Example
         # tele_id = 123456
         if random.randint(0, 1) == 0:
-            bot.sendSticker(chat_id='tele_id', sticker=open(random.choice(sticker_list), 'rb'))
-        bot.sendMessage(chat_id='tele_id', text=random.choice(message_list), parse_mode=ParseMode.HTML)
+            bot.sendSticker(chat_id='tele_id', sticker=open(random_sticker, 'rb'))
+        else:
+            bot.sendMessage(chat_id='tele_id', text=random_message, parse_mode=ParseMode.HTML)
 
 
-# 3600s(1h) execute
+# 3600 = One hour execute
 job_minute = Job(handle, 3600.0)
 
 j = updater.job_queue
 j.put(job_minute, next_t=0.0)
 
-# start the program
+# Start the program
 updater.start_polling()
 updater.idle()
