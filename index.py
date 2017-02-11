@@ -5,6 +5,7 @@
 
 import datetime
 import random
+import json
 
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
@@ -23,24 +24,22 @@ logging.basicConfig(level=logging.DEBUG, format=formats)
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-# TODO: Fix the .ini parser code of ConfigPaser bug
-# config = ConfigParser()
-# config.read('config.ini')
-#
-#
-# def get_telegram_info():
-#     token = config['telegram']['token']
-#     tele_id = config['telegram']['tele_id']
-#
-#     return token, tele_id
-#
-# token tele_id = get_telegram_info()
-#
-# def get_github_account_info():
-#     user_name = config['github']['username']
-#     pass_word = config['github']['password']
-#
-#     return user_name, pass_word
+json = open('config.json').read()
+config = json.loads(json)
+
+def get_telegram_info():
+	token = config['tele_token']
+	tele_id = config['tele_id']
+
+	return token, tele_id
+	
+token tele_id = get_telegram_info()
+
+def get_github_account_info():
+	git_user = config['git_user']
+	git_pass = config['git_pass']
+
+return git_user, git_pass
 
 
 updater = Updater('token')
@@ -49,13 +48,13 @@ dispatcher = updater.dispatcher
 
 def start(bot, update):
     # Home message
-    msg = "안녕 {user_name}! 저는 커미이이잇 봇이에요.(찡긋) \n"
+    msg = "안녕 {git_user}! 저는 커미이이잇 봇이에요.(찡긋) \n"
     msg += "커밋! 커밋을 보자!"
 
     # Send the message
     bot.send_message(chat_id=update.message.chat_id,
                      text=msg.format(
-                         user_name=update.message.from_user.first_name,
+                         git_user=update.message.from_user.first_name,
                          bot_name=bot.name))
 
 
