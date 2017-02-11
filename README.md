@@ -5,17 +5,17 @@ Commmmmmm~~with me!~~it every day!
 
 ## How to run this chat bot?
 ### ~~run `install.sh`~~
-[TODO: Fix `config.ini` paser bug..](https://github.com/MuhunKim/DailyCommit/blob/master/index.py#L25)
 
 ### \#1 `pip install -r requirements.txt`
 
-### \#2 Edit the line
-
-##### [44](https://github.com/MuhunKim/DailyCommit/blob/master/index.py#L44) : (Telegram)`bot_token`
-
-##### [102](https://github.com/MuhunKim/DailyCommit/blob/master/index.py#L102) : (Github) `username`, `password`
-
-##### [110](https://github.com/MuhunKim/DailyCommit/blob/master/index.py#L110) : (Telegram user) `tele_id`
+### Set config
+```json
+{
+	"tele_token":"Telegram Token Here"
+	"tele_id":"Telegram ID Here"
+	"git_user":"GitHub Username Here"
+	"tele_id":"GitHub Password Here"
+```
 
 ### \#3 run `python index.py`
 ![](screenshot.png)
