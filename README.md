@@ -11,9 +11,9 @@ Commmmmmm~~with me!~~it every day!
 ### Set config
 ```json
 {
-	"tele_token":"Telegram Token Here"
-	"tele_id":"Telegram ID Here"
-	"git_user":"GitHub Username Here"
+	"tele_token":"Telegram Token Here",
+	"tele_id":"Telegram ID Here",
+	"git_user":"GitHub Username Here",
 	"tele_id":"GitHub Password Here"
 }
 ```
