@@ -15,6 +15,7 @@ Commmmmmm~~with me!~~it every day!
 	"tele_id":"Telegram ID Here"
 	"git_user":"GitHub Username Here"
 	"tele_id":"GitHub Password Here"
+}
 ```
 
 ### \#3 run `python index.py`
