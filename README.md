@@ -5,17 +5,9 @@ Commmmmmm~~with me!~~it every day!
 
 ## How to run this chat bot?
 
-### \#1 `pip install -r requirements.txt`
+### \#1 run `pip install -r requirements.txt`
 
-### \#2 Set config (config.json)
-```json
-{
-	"tele_token":"Telegram Token Here",
-	"tele_id":"Telegram ID Here",
-	"git_user":"GitHub Username Here",
-	"tele_id":"GitHub Password Here"
-}
-```
+### \#2 run `./setup.sh`
 
 ### \#3 run `python index.py`
 ![](screenshot.png)
