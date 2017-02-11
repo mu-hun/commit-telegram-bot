@@ -8,7 +8,7 @@ Commmmmmm~~with me!~~it every day!
 
 ### \#1 `pip install -r requirements.txt`
 
-### Set config
+### \#2 Set config
 ```json
 {
 	"tele_token":"Telegram Token Here",
@@ -23,7 +23,7 @@ Commmmmmm~~with me!~~it every day!
 
 ## License
 ```
-The MIT License (MIT)
+The MIㄴse (MIT)
 
 Copyright (c) 2016 BetaFish
 ```
