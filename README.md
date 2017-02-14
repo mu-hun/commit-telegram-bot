@@ -1,5 +1,5 @@
-# DailyCommit
-Commmmmmmit every day!
+# commit-telegram-bot
+:alarm_clock: Remind your commit and coding every day with Telegram bot!
 
 Telegram version of [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/commit-alarm)
 
@@ -26,13 +26,13 @@ u'<b>1 Day 1 Commit</b> (찡긋)'
 
 ## License
 
+### Sticker License
+- Reva kakako sticker : [Rest Vatican](http://mister1315.tistory.com/)
+- FaceBook sticker : [Pusheen cat](https://www.facebook.com/Pusheen)
+
+
 ```
 The MIT License (MIT)
 
 Copyright (c) 2016-2017 BetaFish
 ```
-
-
-### Sticker License
-- Reva kakako sticker : [Rest Vatican](http://mister1315.tistory.com/)
-- FaceBook sticker : [Pusheen cat](https://www.facebook.com/Pusheen)
