@@ -1,20 +1,32 @@
 # DailyCommit
-Commmmmmm~~with me!~~it every day!
+Commmmmmmit every day!
 
-**[@mingrammer](https://github.com/mingrammer)**님의 슬랙 봇인 [commit-alarm](https://github.com/geekhub-lab/commit-alarm)을 텔레그램으로 포팅한 챗봇입니다.
+Telegram version of [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/commit-alarm)
 
 ## How to run this chat bot?
 
-### \#1 run `pip install -r requirements.txt`
+  1. `pip install -r requirements.txt`
+  2. ./setup.sh`
+  3. `python index.py`
 
-### \#2 run `./setup.sh`
-
-### \#3 run `python index.py`
+## Screenshot
 ![](screenshot.png)
+
+### Default bot chat script
+```
+u'커밋좀;',
+u'저기여, 커밋인데여. 오늘 커밋 안하세여?',
+u'<b>커밋은 하고 자야지?</b>',
+u'커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!<del>빼애ㅐㅣ애애애액!!!!!!!!!</del>',
+u'커밋해야 한다(<del>수화기를 들며</del>)',
+u'커밋 컴 윗 미 컴윗',
+u'<i>Make Commit log Great Again</i>',
+u'<b>1 Day 1 Commit</b> (찡긋)'
+```
 
 ## License
 ```
 The MIT License (MIT)
 
-Copyright (c) 2016 BetaFish
+Copyright (c) 2016-2017 BetaFish
 ```
