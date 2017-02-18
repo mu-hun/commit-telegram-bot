@@ -1,12 +1,5 @@
 # coding: utf-8
 
-# HACK: configparser module bug
-# from configparser import ConfigParser
-
-import datetime
-import random
-import json
-
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler
@@ -14,8 +7,11 @@ from telegram.ext import Filters
 from telegram.ext import Job
 from telegram import ParseMode
 
-from github import Github
+import datetime
+import random
 
+from commit_event import config
+from commit_events import GetEvent
 
 import logging
 formats = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -24,34 +20,12 @@ logging.basicConfig(level=logging.DEBUG, format=formats)
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-json = open('config.json').read()
-config = json.loads(json)
-
-def get_telegram_info():
-	token = config['tele_token']
-	tele_id = config['tele_id']
-
-	return token, tele_id
-	
-token tele_id = get_telegram_info()
-
-def get_github_account_info():
-	git_user = config['git_user']
-	git_pass = config['git_pass']
-
-return git_user, git_pass
-
-
-updater = Updater('token')
+updater = Updater(config['bot_token'])
 dispatcher = updater.dispatcher
 
 
 def start(bot, update):
-    # Home message
-    msg = "안녕 {git_user}! 저는 커미이이잇 봇이에요.(찡긋) \n"
-    msg += "커밋! 커밋을 보자!"
-
-    # Send the message
+    msg = "안녕 {git_user}! 저는 커미이이잇 봇이에요.(찡긋) \n 커밋! 커밋을 보자!"
     bot.send_message(chat_id=update.message.chat_id,
                      text=msg.format(
                          git_user=update.message.from_user.first_name,
@@ -61,72 +35,44 @@ def start(bot, update):
 def unknown(bot, update):
     bot.sendMessage(chat_id=update.message.chat_id, text="유효하지 않는 커맨드 입니다.")
 
-
 dispatcher.add_handler(CommandHandler('start', start))
 dispatcher.add_handler(MessageHandler([Filters.command], unknown))
 
+
 message_list = [
-    u'커밋좀;',
-    u'저기여, 커밋인데여. 오늘 커밋 안하세여?',
-    u'<b>커밋은 하고 자야지?</b>',
-    u'커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!<del>빼애ㅐㅣ애애애액!!!!!!!!!</del>',
-    u'커밋해야 한다(<del>수화기를 들며</del>)',
-    u'커밋 컴 윗 미 컴윗',
-    u'<i>Make Commit log Great Again</i>',
-    u'<b>1 Day 1 Commit</b> (찡긋)'
+    '커밋좀;',
+    '저기여, 커밋인데여. 오늘 커밋 안하세여?',
+    '<b>커밋은 하고 자야지?</b>',
+    '커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!<del>빼애ㅐㅣ애애애액!!!!!!!!!</del>',
+    '커밋해야 한다(<del>수화기를 들며</del>)',
+    '커밋 컴 윗 미 컴윗',
+    '<i>Make Commit log Great Again</i>',
+    '<b>1 Day 1 Commit</b> (찡긋)'
 ]
 random_message = random.choice(message_list)
 
 sticker_list = [
-    'reva.webp',
-    'cat.webp'
+    'images/reva.webp',
+    'images/cat.webp'
 ]
 random_sticker = random.choice(sticker_list)
 
-
-def get_today_commit_events(user):
-    today = datetime.datetime.today()
-    today_date = datetime.datetime(today.year, today.month, today.day)
-    today_date_ko = today_date - datetime.timedelta(hours=9)
-
-    commit_events = []
-
-    for event in user.get_events():
-        if event.created_at > today_date_ko:
-            if event.type in ['PushEvent', 'PullRequestEvent', 'IssueEvent']:
-                commit_events.append(event)
-        else:
-            break
-
-    return commit_events
-
-
-def handle(bot, job):
-    # username, password = get_github_account_info()
-    username, password = 'your_username', 'your_pw'
-
-    client = Github(username, password)
-
-    today_commit_events = get_today_commit_events(client.get_user(username))
-
-    if len(today_commit_events) == 0:
-        # NOTE : 'tele_id' is user chat id or grop chat id
-        # Please check your id to https://telegram.me/userinfobot
-
-        # Example
-        # tele_id = 123456
+def plzcommit(bot, update):
+    commitevent = GetEvent()
+    user_status = commitevent.handle()
+    if user_status == False:
         if random.randint(0, 1) == 0:
-            bot.sendSticker(chat_id='tele_id', sticker=open(random_sticker, 'rb'))
+            bot.sendSticker(chat_id=config['tele_id'], sticker=open(random_sticker, 'rb'))
         else:
-            bot.sendMessage(chat_id='tele_id', text=random_message, parse_mode=ParseMode.HTML)
-
+            bot.sendMessage(chat_id=config['tele_id'], text=random_message, parse_mode=ParseMode.HTML)
+    else:
+        print("commit status of user is Good :D")
 
 # 3600 = One hour execute
-job_minute = Job(handle, 3600.0)
-
-j = updater.job_queue
-j.put(job_minute, next_t=0.0)
+job_minute = Job(plzcommit, 3600.0)
+updater.job_queue.put(job_minute, next_t=0.0)
 
 # Start the program
-updater.start_polling()
-updater.idle()
+if __name__ == __main__:
+    updater.start_polling()
+    updater.idle()

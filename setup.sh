@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # telegram configuration
-while [[ -z "$tele_token" ]]
+while [[ -z "$bot_token" ]]
 do
     read -p "Please enter Telegram bot token : " tele_token
 done
@@ -12,24 +12,24 @@ do
 done
 
 # github configuration
-while [[ -z "$git_user" ]]
+while [[ -z "$username" ]]
 do
-    read -p "GitHub Username : " git_user
+    read -p "GitHub Username : " username
 done
 
-while [[ -z "$git_pass" ]]
+while [[ -z "$password" ]]
 do
-    read -s -p "GitHub Password : " git_pass
+    read -s -p "GitHub Password : " username
 done
 
-touch config.json
+touch config/config.json
 
 cat << EOF > config.json
 {
-	"tele_token":"$tele_token",
+	"bot_token":"$bot_token",
 	"tele_id":"$tele_id",
-	"git_user":"$git_user",
-	"git_pass":"$git_pass"
+	"username":"$username",
+	"password":"$password"
 }
 EOF
 
