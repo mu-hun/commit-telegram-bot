@@ -10,7 +10,7 @@ Telegram version of [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/co
   3. `python index.py`
 
 ## Screenshot
-![](screenshot.png)
+![](images/creenshot.png)
 
 ### Default bot chat script
 ```
