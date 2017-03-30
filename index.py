@@ -1,5 +1,8 @@
 # coding: utf-8
 
+import random
+import logging
+
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler
@@ -7,22 +10,10 @@ from telegram.ext import Filters
 from telegram.ext import Job
 from telegram import ParseMode
 
+
+from github import Github
 import datetime
-import random
-
-from commit_event import config
-from commit_events import GetEvent
-
-import logging
-formats = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-logging.basicConfig(level=logging.DEBUG, format=formats)
-
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-
-updater = Updater(config['bot_token'])
-dispatcher = updater.dispatcher
-
+import json
 
 def start(bot, update):
     msg = "안녕 {git_user}! 저는 커미이이잇 봇이에요.(찡긋) \n 커밋! 커밋을 보자!"
@@ -34,9 +25,6 @@ def start(bot, update):
 
 def unknown(bot, update):
     bot.sendMessage(chat_id=update.message.chat_id, text="유효하지 않는 커맨드 입니다.")
-
-dispatcher.add_handler(CommandHandler('start', start))
-dispatcher.add_handler(MessageHandler([Filters.command], unknown))
 
 
 message_list = [
@@ -66,7 +54,52 @@ def plzcommit(bot, update):
         else:
             bot.sendMessage(chat_id=config['tele_id'], text=random_message, parse_mode=ParseMode.HTML)
     else:
-        print("commit status of user is Good :D")
+        logger.info("status : Good")
+
+class GetEvent():
+    def __init__(self):
+        self.username = config['username']
+        self.password = config['password']
+
+    def handle(self):
+        client = Github(self.username, self.password)
+        today_commit_events = get_today_commit_events(client.get_user(self.username))
+
+        if len(today_commit_events) == 0:
+            return False
+        else:
+            return True
+
+def get_today_commit_events(user):
+    today = datetime.datetime.today()
+    today_date = datetime.datetime(today.year, today.month, today.day)
+    today_date_ko = today_date - datetime.timedelta(hours=9)
+
+    commit_events = []
+
+    for event in user.get_events():
+        if event.created_at > today_date_ko:
+            if event.type in ['PushEvent', 'PullRequestEvent', 'IssueEvent']:
+                commit_events.append(event)
+        else:
+            break
+
+    return commit_events
+
+with open('config.json') as config_file:
+    config = json.load(config_file)
+
+formats = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+logging.basicConfig(level=logging.DEBUG, format=formats)
+
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
+updater = Updater(config['bot_token'])
+dispatcher = updater.dispatcher
+
+dispatcher.add_handler(CommandHandler('start', start))
+dispatcher.add_handler(MessageHandler([Filters.command], unknown))
 
 # 3600 = One hour execute
 job_minute = Job(plzcommit, 3600.0)

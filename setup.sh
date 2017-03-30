@@ -22,7 +22,7 @@ do
     read -s -p "GitHub Password : " username
 done
 
-touch config/config.json
+touch config.json
 
 cat << EOF > config.json
 {
