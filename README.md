@@ -1,7 +1,13 @@
 # commit-telegram-bot
-:alarm_clock: Remind your commit and coding every day with Telegram bot!
+:alarm_clock: Remind your commit and coding every day with chat bot!
 
-Telegram version of [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/commit-alarm)
+## License
+orignal script is this repo : [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/commit-alarm)
+```
+The MIT License (MIT)
+
+Copyright (c) 2016-2017 BetaFish
+```
 
 ## How to run this chat bot?
 
@@ -14,21 +20,21 @@ Telegram version of [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/co
 
 ### Default bot chat script
 ```
-u'커밋좀;',
-u'저기여, 커밋인데여. 오늘 ac 안하세여?',
-u'<b>커밋은 하고 자야지?</b>',
-u'커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!<del>빼애ㅐㅣ애애애액!!!!!!!!!</del>',
-u'커밋해야 한다(<del>수화기를 들며</del>)',
-u'커밋 컴 윗 미 컴윗',
-u'<i>Make Commit log Great Again</i>',
-u'<b>1 Day 1 Commit</b> (찡긋)'
+'커밋좀;',
+'저기여, 커밋인데여. 오늘 ac 안하세여?',
+'<b>커밋은 하고 자야지?</b>',
+'커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!<del>빼애ㅐㅣ애애애액!!!!!!!!!</del>',
+'커밋해야 한다(<del>수화기를 들며</del>)',
+'커밋 컴 윗 미 컴윗',
+'<i>Make Commit log Great Again</i>',
+'<b>1 Day 1 Commit</b> (찡긋)'
 ```
 
 ## License
 
 ### Sticker License
-- Reva kakako sticker : [Rest Vatican](http://mister1315.tistory.com/)
-- FaceBook sticker : [Pusheen cat](https://www.facebook.com/Pusheen)
+- Reva : [Rest Vatican](http://mister1315.tistory.com/)
+- FaceBook : [Pusheen cat](https://www.facebook.com/Pusheen)
 
 
 ```
