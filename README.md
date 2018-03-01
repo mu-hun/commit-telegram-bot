@@ -1,4 +1,6 @@
 # commit-telegram-bot
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 :alarm_clock: Remind your commit and coding every day with Telegram bot!
 
 Telegram version of [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/commit-alarm)
