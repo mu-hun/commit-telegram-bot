@@ -3,11 +3,6 @@
 
 ## License
 orignal script is this repo : [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/commit-alarm)
-```
-The MIT License (MIT)
-
-Copyright (c) 2016-2017 BetaFish
-```
 
 ## How to run this chat bot?
 
@@ -21,7 +16,7 @@ Copyright (c) 2016-2017 BetaFish
 ### Default bot chat script
 ```
 '커밋좀;',
-'저기여, 커밋인데여. 오늘 ac 안하세여?',
+'저기여, 커밋인데여. 오늘 커밋 안하세여?',
 '<b>커밋은 하고 자야지?</b>',
 '커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!<del>빼애ㅐㅣ애애애액!!!!!!!!!</del>',
 '커밋해야 한다(<del>수화기를 들며</del>)',
@@ -32,13 +27,8 @@ Copyright (c) 2016-2017 BetaFish
 
 ## License
 
-### Sticker License
+_commit-telegram-bot_ is primarily distributed under the terms of the MIT License. see [LICENSE](./LICENSE) for details.
+
+### Sticker source info
 - Reva : [Rest Vatican](http://mister1315.tistory.com/)
 - FaceBook : [Pusheen cat](https://www.facebook.com/Pusheen)
-
-
-```
-The MIT License (MIT)
-
-Copyright (c) 2016-2017 BetaFish
-```
