@@ -4,7 +4,7 @@
 ## License
 orignal script is this repo : [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/commit-alarm)
 
-## How to run this chat bot?
+## How to run this chat bot
 
   1. `pip install -r requirements.txt`
   2. `./setup.sh`

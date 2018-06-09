@@ -1,2 +1,2 @@
 PyGithub==1.28
-telepot==12.2
+requests==2.18.4

@@ -2,40 +2,41 @@
 
 import random
 import json
+from requests import get
 
 from github_event import GetEvent
-import telepot
 
 with open('config.json') as config_file:
-    CONFIG = json.load(config_file)
+    config = json.load(config_file)
 
-BOT = telepot.Bot(CONFIG['bot_token'])
-SCRIPT_LIST = [
+script = [
     '커밋! 커밋을 보자!',
     '커밋좀;',
     '<b>커밋은 하고 자야지?</b>',
     '저기여, 커밋인데여. 오늘 커밋 안하세여?',
-    '커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!<del>빼애ㅐㅣ애애애액!!!!!!!!!</del>',
-    '커밋해야 한다(<del>수화기를 들며</del>)',
+    '커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!<b>빼애ㅐㅣ애애애액!!!!!!!!!</b>',
+    '커밋해야 한다(<b>수화기를 들며</b>)',
     '커밋 컴 윗 미 컴윗',
     '<i>Make Commit log Great Again</i>',
     '<b>1 Day 1 Commit</b> (찡긋)'
 ]
-RANDOM_MESSAGE = random.choice(SCRIPT_LIST)
+message = random.choice(script)
 
-STAKER_LIST = [
-    'images/reva.webp',
-    'images/cat.webp'
+stickers = [
+    'CAADBAADHgAD2Z41UFC5XtkuKo6FAg',
+    'CAADBAADHQAD70EtUMSATFLKs-DHAg'
 ]
-RANDOM_STICKER = random.choice(STAKER_LIST)
+sticker = random.choice(stickers)
+
+api = 'https://api.telegram.org/bot' + config['bot_token']
+chat_id = config['tele_id']
 
 def send_commit_status():
     commitevent = GetEvent()
     user_status = commitevent.handle()
     if user_status == 0:
-        # BOT.sendMessage(chat_id=CONFIG['tele_id'], sticker=open(RANDOME_STICKER, 'rb'))
-        # TODO: add html parse_mode
-        BOT.sendMessage(chat_id=CONFIG['tele_id'], text=RANDOM_MESSAGE, parse_mode=None)
+        get(api + '/sendSticker', data={'chat_id':chat_id, 'sticker':sticker})
+        get(api + '/sendMessage', data={'chat_id':chat_id, 'text':message, 'parse_mode':'HTML'})
 
 # Start the program
 if __name__ == "__main__":
