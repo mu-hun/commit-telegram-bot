@@ -1,2 +1,2 @@
 PyGithub==1.28
-python-telegram-bot==5.0.0
+requests==2.18.4
