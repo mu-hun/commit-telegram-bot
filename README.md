@@ -2,9 +2,6 @@
 
 :alarm_clock: Remind your commit and coding every day with chat bot!
 
-## License
-orignal script is this repo : [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/commit-alarm)
-
 ## How to run this chat bot
 
   1. `pip install -r requirements.txt`
@@ -12,10 +9,12 @@ orignal script is this repo : [geekhub-lab/commit-alarm](https://github.com/geek
   3. `python index.py`
 
 ## Screenshot
-![](./images/screenshot.png)
 
-### Default bot chat script
-```
+<img src='screenshot.png' width='300em'>
+
+## Default bot chat script
+
+```html
 '커밋좀;',
 '저기여, 커밋인데여. 오늘 커밋 안하세여?',
 '<b>커밋은 하고 자야지?</b>',
@@ -28,8 +27,6 @@ orignal script is this repo : [geekhub-lab/commit-alarm](https://github.com/geek
 
 ## License
 
-_commit-telegram-bot_ is primarily distributed under the terms of the MIT License. see [LICENSE](./LICENSE) for details.
+orignal project : [geekhub-lab/commit-alarm](https://github.com/geekhub-lab/commit-alarm)
 
-### Sticker source info
-- Reva : [Rest Vatican](http://mister1315.tistory.com/)
-- FaceBook : [Pusheen cat](https://www.facebook.com/Pusheen)
+_commit-telegram-bot_ is primarily distributed under the terms of the MIT License. see [LICENSE](./LICENSE) for details.
