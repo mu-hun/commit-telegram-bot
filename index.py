@@ -34,7 +34,7 @@ chat_id = config['tele_id']
 def send_commit_status():
     commitevent = GetEvent()
     user_status = commitevent.handle()
-    if user_status == 0:
+    if user_status == False:
         get(api + '/sendSticker', data={'chat_id':chat_id, 'sticker':sticker})
         get(api + '/sendMessage', data={'chat_id':chat_id, 'text':message, 'parse_mode':'HTML'})
 
