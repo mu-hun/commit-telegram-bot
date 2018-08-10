@@ -8,6 +8,18 @@
   2. `./setup.sh`
   3. `python index.py`
 
+## You can also use cron job
+
+```bash
+$ crontab -e
+#/usr/bin/crontab
+0 9-23/3 * * * /Users/muhun/.local/share/virtualenvs/commit-telegram-bot-0yJ9B3aR/bin/python3 /Users/muhun/github/betaFish/commit-telegram-bot/index.py
+```
+
+`~/.local/share/virtualenvs/commit-telegram-bot-0yJ9B3aR` and `~/github/betaFish` is my own directory environment
+
+Repeat every 3 hours from 9:00 to 23:00.
+
 ## Screenshot
 
 <img src='screenshot.png' width='300em'>
