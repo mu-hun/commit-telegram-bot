@@ -1,18 +1,15 @@
 # coding : utf-8
-
 import datetime
 import json
 from github import Github
 
-with open('config.json') as config_file:
+with open('./config.json') as config_file:
     config = json.load(config_file)
 
 class GetEvent():
     def __init__(self):
         self.username = config['username']
-        gh_token = config['gh_token']
-
-        self.client = Github(gh_token)
+        self.client = Github(config['gh_token'])
 
     def handle(self):
         today_commit_events = get_today_commit_events(self.client.get_user(self.username))
