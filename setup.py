@@ -4,7 +4,7 @@ with open('README.md') as f:
     long_description = f.read()
 
 setup(
-    name='jejunuMeals',
+    name='commit-telegram-bot',
     version='1.0',
     url='https://github.com/BetaF1sh/commit-telegram-bot',
     license='MIT',
