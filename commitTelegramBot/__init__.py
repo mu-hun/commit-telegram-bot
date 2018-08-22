@@ -28,6 +28,9 @@ date = date.today()
 year, month, day = str(date.year), date.strftime('%m'), date.strftime('%d')
 
 class CommitTelegramBot:
+	
+	__slots__ = ['header', 'query_access', 'api', 'chat_id']
+
 	def __init__(self, github_token, github_user, telegram_token, telegram_id):
 		self.header = {"Authorization": "Bearer " + github_token}
 		self.query_access = {"query": "query{user(login: " + github_user + ") { repositories(last: 100) { totalCount nodes { name defaultBranchRef { target { ...on Commit {history(since: \"" + year + "-" + month + "-" + day + "T09:00:00+00:00\") { totalCount}}}}}}}}"}
