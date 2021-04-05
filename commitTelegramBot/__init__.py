@@ -75,8 +75,8 @@ class CommitTelegramBot:
             self.send_sticker(stickers['thumbs_up'])
             self.send_message('\n'.join(
                 (
-                    f'현재까지 {count} 개의 기여를 해냈습니다 👍',
-                    f'• Commit: {contributions["totalCommitContributions"]}',
-                    f'• Issue: {contributions["totalIssueContributions"]}',
-                    f'• PR: {contributions["totalPullRequestContributions"]}',
+                    f'현재까지 `{count}` 개의 기여를 해냈습니다 👍',
+                    f'• Commit: `{contributions["totalCommitContributions"]}`',
+                    f'• Issue: `{contributions["totalIssueContributions"]}`',
+                    f'• PR: `{contributions["totalPullRequestContributions"]}`',
                 )))
