@@ -6,10 +6,20 @@ if os.path.exists('.env'):
     from dotenv import load_dotenv
     load_dotenv()
 
-environment_variables = [os.getenv('github_token'),
-                         os.getenv('github_username'),
-                         os.getenv('bot_token'),
-                         os.getenv('chat_id')]
+
+def get_env(key: str):
+    value = os.getenv(key)
+
+    if isinstance(value, str):
+        return value
+
+    raise ValueError(f'There is no environment variable named "{key}"')
+
+
+environment_variables = (get_env('github_token'),
+                         get_env('github_username'),
+                         get_env('bot_token'),
+                         get_env('chat_id'))
 
 bot = CommitTelegramBot(*environment_variables)
 
