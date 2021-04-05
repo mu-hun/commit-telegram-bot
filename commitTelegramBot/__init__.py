@@ -6,14 +6,10 @@ from typing import Dict
 import requests
 
 warning_scripts = [
-    '커밋좀;',
-    '저기여, 커밋인데여. 오늘 커밋 안하세여?',
-    '**커밋은 하고 자야지?**',
-    '커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!~~빼애ㅐㅣ애애애액!!!!!!!!!~~',
-    '커밋해야 한다(~~수화기를 들며~~)',
-    '커밋 컴 윗 미 컴윗',
+    'Hey, Are you not committing today?',
+    '**You Should commit before to sleep.**',
     '*Make Commit log Great Again*',
-    '**1 Day 1 Commit** (찡긋)'
+    '**1 Day 1 Commit** 😉'
 ]
 
 stickers = {
@@ -75,7 +71,7 @@ class CommitTelegramBot:
             self.send_sticker(stickers['thumbs_up'])
             self.send_message('\n'.join(
                 (
-                    f'현재까지 `{count}` 개의 기여를 해냈습니다 👍',
+                    f'Contributed `{count}` times today 👍',
                     f'• Commit: `{contributions["totalCommitContributions"]}`',
                     f'• Issue: `{contributions["totalIssueContributions"]}`',
                     f'• PR: `{contributions["totalPullRequestContributions"]}`',
