@@ -5,15 +5,15 @@ from typing import Dict
 
 import requests
 
-script = [
+warning_scripts = [
     '커밋좀;',
     '저기여, 커밋인데여. 오늘 커밋 안하세여?',
-    '<b>커밋은 하고 자야지?</b>',
-    '커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!<del>빼애ㅐㅣ애애애액!!!!!!!!!</del>',
-    '커밋해야 한다(<del>수화기를 들며</del>)',
+    '**커밋은 하고 자야지?**',
+    '커밋하세에ㅔㅔㅔㅔㅁㅁㅁ!!!!~~빼애ㅐㅣ애애애액!!!!!!!!!~~',
+    '커밋해야 한다(~~수화기를 들며~~)',
     '커밋 컴 윗 미 컴윗',
-    '<i>Make Commit log Great Again</i>',
-    '<b>1 Day 1 Commit</b> (찡긋)'
+    '*Make Commit log Great Again*',
+    '**1 Day 1 Commit** (찡긋)'
 ]
 
 stickers = {
@@ -22,7 +22,7 @@ stickers = {
 }
 
 
-def getScript(): return random.choice(script)
+def get_warning_script(): return random.choice(warning_scripts)
 
 
 class CommitTelegramBot:
@@ -35,7 +35,7 @@ class CommitTelegramBot:
         self.endpoint = f'https://api.telegram.org/bot{bot_token}'
         self.chat_id = chat_id
 
-    def fetch(self):
+    def fetch(self) -> Dict[str, int]:
         date = datetime.date.today()
         query = '''
         query {
@@ -51,28 +51,32 @@ class CommitTelegramBot:
 
         header = {'Authorization': f'Bearer {self.github_token}'}
 
-        return requests.post('https://api.github.com/graphql',
-                             json={'query': query}, headers=header).json()
+        fetched = requests.post('https://api.github.com/graphql',
+                                json={'query': query}, headers=header).json()
 
-    def total_count(self):
-        fetched = self.fetch()
-        print(fetched)
-        contributions_collection: Dict[str,
-                                       int] = fetched['data']['user']['contributionsCollection']
-
-        return reduce(lambda count, value: count + value, contributions_collection.values(), 0)
+        return fetched['data']['user']['contributionsCollection']
 
     def send_sticker(self, file_id: str):
         requests.get(self.endpoint + '/sendSticker',
                      data={'chat_id': self.chat_id, 'sticker': file_id})
 
+    def send_message(self, message: str):
+        requests.post(self.endpoint + '/sendMessage',
+                      data={'chat_id': self.chat_id, 'text': message, 'parse_mode': 'Markdown'})
+
     def handler(self):
-        count = self.total_count()
+        contributions = self.fetch()
+        count = reduce(lambda count, value: count +
+                       value, contributions.values(), 0)
         if count == 0:
             self.send_sticker(stickers['flushed'])
-            requests.post(self.endpoint + '/sendMessage',
-                          data={'chat_id': self.chat_id, 'text': getScript(), 'parse_mode': 'HTML'})
+            self.send_message(get_warning_script())
         else:
             self.send_sticker(stickers['thumbs_up'])
-            requests.post(self.endpoint + '/sendMessage', data={
-                'chat_id': self.chat_id, 'text': f'현재까지 {count} 개의 기여를 해냈습니다!'})
+            self.send_message('\n'.join(
+                (
+                    f'현재까지 {count} 개의 기여를 해냈습니다 👍',
+                    f'• Commit: {contributions["totalCommitContributions"]}',
+                    f'• Issue: {contributions["totalIssueContributions"]}',
+                    f'• PR: {contributions["totalPullRequestContributions"]}',
+                )))

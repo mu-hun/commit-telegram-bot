@@ -14,8 +14,11 @@ environment_variables = [os.getenv('github_token'),
 bot = CommitTelegramBot(*environment_variables)
 
 
-def test_count():
-    assert isinstance(bot.total_count(), int)
+def test_fetch():
+    fetched = bot.fetch()
+    for key in ['totalCommitContributions',
+                'totalIssueContributions', 'totalPullRequestContributions']:
+        assert isinstance(fetched[key], int)
 
 
 def test_bot_run():
